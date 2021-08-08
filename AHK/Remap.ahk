@@ -118,11 +118,27 @@ $Ctrl::
 <^Space::Send,{vk19} ;半角/全角切り換え
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
+;Ctrl + jknp => 矢印キー
 <^H::Send, {BS}
 <^J::Send, {left}
 <^K::Send, {right}
 <^N::Send, {down}
 <^P::Send, {up}
+;Ctrl + Shift + jknp => Shift + 矢印キー
++<^J::Send, +{left}
++<^K::Send, +{right}
++<^N::Send, +{down}
++<^P::Send, +{up}
+;Ctrl + Ctrl + jknp => Ctrl + 矢印キー
+>^<^J::Send, ^{left}
+>^<^K::Send, ^{right}
+>^<^N::Send, ^{down}
+>^<^P::Send, ^{up}
+;Ctrl + Ctrl + Shift + jknp => Ctrl + Shift + 矢印キー
++>^<^J::Send, ^+{left}
++>^<^K::Send, ^+{right}
++>^<^N::Send, ^+{down}
++>^<^P::Send, ^+{up}
 <^[::Send,{Esc}
 <^'::Send,{Esc}
 <^;::Send,{Esc}
@@ -132,7 +148,7 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 >^]::Send, {Browser_Forward}
 ;JISキーボード用
 <^@::Send,{Esc}
-<^vk70::Send, {AppsKey}
+<^vk1C::Send, {AppsKey}
 
 ;起動時に上手く走ってくれないので割り当て
 !g::Run, EscIMEOff.ahk
