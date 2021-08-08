@@ -144,6 +144,7 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 <^;::Send,{Esc}
 ;>^W::Send, {RCtrl}{F4}
 >^Q::Send, !{F4}
+>^4::Send, ^{F4}
 >^[::Send, {Browser_Back}
 >^]::Send, {Browser_Forward}
 ;JISキーボード用
@@ -152,3 +153,9 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 
 ;起動時に上手く走ってくれないので割り当て
 !g::Run, EscIMEOff.ahk
+
+;ウィンドウサイズ変更
+#<^p::Send, #{up}
+#<^n::Send, #{down}
+#<^j::Send, #{left}
+#<^k::Send, #{right}
