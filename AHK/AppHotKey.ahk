@@ -6,3 +6,5 @@
 ^!S::Send, #4
 ^!L::Send, #5
 ^!E::Send, #6
+^!T::Send, #7
+^!Z::Send, #8
