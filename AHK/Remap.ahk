@@ -88,7 +88,7 @@
 *~Tab::
 *~Space::
 *~LAlt::
-*~RAlt::
+;*~RAlt::
 *~Left::
 *~Right::
 *~Up::
@@ -143,17 +143,18 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 <^[::Send,{Esc}
 <^'::Send,{Esc}
 <^;::Send,{Esc}
-!<^[::Send,!{Esc}
-!<^'::Send,!{Esc}
-!<^;::Send,!{Esc}
++<^[::Send,+{Esc}
++<^'::Send,+{Esc}
++<^;::Send,+{Esc}
 
 >^Q::Send, !{F4}
 >^4::Send, ^{F4}
 >^[::Send, {Browser_Back}
 >^]::Send, {Browser_Forward}
+
 ;JISキーボード用
 <^@::Send,{Esc}
-!<^@::Send,!{Esc}
++<^@::Send,+{Esc}
 <^vk1C::Send, {AppsKey}
 
 ;起動時に上手く走ってくれないので割り当て
