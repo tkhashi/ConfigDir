@@ -93,10 +93,12 @@ $Tab::
  ~vk1C & Enter Up::MouseClick,left,,,,,U
  ~vk1C & F::MouseClick,left,,,,,D
  ~vk1C & F Up::MouseClick,left,,,,,U
+ <^vk1D::MouseClick,left,,,,,D
+ <^vk1D Up::MouseClick,left,,,,,U
+
 
 ; 変換 + S = 右クリック
 ~vk1C & S::MouseClick,right
-
 
 ; 変換 + P = スクロールアップ
 ~vk1C & P::

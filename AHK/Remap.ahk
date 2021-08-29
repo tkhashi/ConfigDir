@@ -110,12 +110,12 @@ $Ctrl::
     keyPressDuration := A_TickCount - startTime
     ; Ctrlを押している間に他のホットキーが発動した場合は入力しない
     ; Ctrlを長押ししていた場合も入力しない
-    If (A_ThisHotkey == "$Ctrl" and keyPressDuration < 200) {
+    If (A_ThisHotkey == "$Ctrl" and keyPressDuration < 20000) {
         Send,{Ctrl}
     }
     Return
 
-<^Space::Send,{vk19} ;半角/全角切り換え
+;<^Space::Send,{vk19} ;半角/全角切り換え
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 ;Ctrl + jknp => 矢印キー
@@ -140,6 +140,7 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 +>^<^N::Send, ^+{down}
 +>^<^P::Send, ^+{up}
 
+<^]::Send,{Esc}
 <^[::Send,{Esc}
 <^'::Send,{Esc}
 <^;::Send,{Esc}
@@ -148,7 +149,7 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 +<^;::Send,+{Esc}
 
 >^Q::Send, !{F4}
->^4::Send, ^{F4}
+^4::Send, ^{F4}
 >^[::Send, {Browser_Back}
 >^]::Send, {Browser_Forward}
 
@@ -158,7 +159,7 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 <^vk1C::Send, {AppsKey}
 
 ;起動時に上手く走ってくれないので割り当て
-!g::Run, EscIMEOff.ahk
+;!g::Run, EscIMEOff.ahk
 
 ;ウィンドウサイズ変更
 #<^p::Send, #{up}
