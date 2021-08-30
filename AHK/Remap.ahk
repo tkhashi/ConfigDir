@@ -142,11 +142,9 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 
 <^]::Send,{Esc}
 <^[::Send,{Esc}
-<^'::Send,{Esc}
-<^;::Send,{Esc}
 +<^[::Send,+{Esc}
-+<^'::Send,+{Esc}
-+<^;::Send,+{Esc}
++<^]::Send,+{Esc}
+
 
 >^Q::Send, !{F4}
 ^4::Send, ^{F4}
