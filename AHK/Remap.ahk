@@ -139,6 +139,21 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 +>^<^K::Send, ^+{right}
 +>^<^N::Send, ^+{down}
 +>^<^P::Send, ^+{up}
+;Ctrl + Alt + jknp => Alt + 矢印キー
+!<^J::Send, !{left}
+!<^K::Send, !{right}
+!<^N::Send, !{down}
+!<^P::Send, !{up}
+;Ctrl + Alt + Shift + jknp => Alt + Shift + 矢印キー
++!<^J::Send, !+{left}
++!<^K::Send, !+{right}
++!<^N::Send, !+{down}
++!<^P::Send, !+{up}
+;Ctrl + Ctrl + Alt + jknp => Alt + Ctrl + 矢印キー
+!>^<^J::Send, ^!{left}
+!>^<^K::Send, ^!{right}
+!>^<^N::Send, ^!{down}
+!>^<^P::Send, ^!{up}
 
 <^]::Send,{Esc}
 <^[::Send,{Esc}
