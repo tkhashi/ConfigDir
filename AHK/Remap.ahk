@@ -2,9 +2,8 @@
 ; 主要なキーをホットキーとして検知可能にしておく
 ; A_ThisHotkey で検知可能にするための記述
 ; 検知だけしてAutoHotKey側では何も処理しない
-;*~LCtrl::
-;*~RCtrl::
-;*~Ctrl::
+*~LCtrl::
+*~RCtrl::
 *~a::
 *~b::
 *~c::
@@ -100,6 +99,7 @@
 *~End::
 *~PgUp::
 *~PgDn::
+
 Return
 
 ; Ctrlを修飾キーとして扱うための準備
@@ -115,7 +115,7 @@ $Ctrl::
     }
     Return
 
-;<^Space::Send,{vk19} ;半角/全角切り換え
+
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 ;Ctrl + jknp => 矢印キー
@@ -137,7 +137,7 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 ;Ctrl + Ctrl + Shift + jknp => Ctrl + Shift + 矢印キー
 +>^<^J::Send, ^+{left}
 +>^<^K::Send, ^+{right}
-+>^<^N::Send, ^+{down}
++>^<^N::Send, ^+{down}F
 +>^<^P::Send, ^+{up}
 ;Ctrl + Alt + jknp => Alt + 矢印キー
 !<^J::Send, !{left}
@@ -179,3 +179,5 @@ PrintScreen::Send, {vk1D} ;無変換＝英数切り替え
 #<^n::Send, #{down}
 #<^j::Send, #{left}
 #<^k::Send, #{right}
+
+;AHKのファイル全部リロード
