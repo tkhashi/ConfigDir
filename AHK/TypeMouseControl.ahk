@@ -36,7 +36,7 @@ $vk1C::
     Return
 $vk1D::
     startTime := A_TickCount
-    KeyWait, vk1
+    KeyWait, vk1D
     keyPressDuration := A_TickCount - startTime
     If (A_ThisHotkey == "$vk1D" and keyPressDuration < 200) {
         Send,{vk1D}
@@ -83,14 +83,13 @@ $vk1D::
  ~vk1C & Enter Up::MouseClick,left,,,,,U
  ~vk1C & F::MouseClick,left,,,,,D
  ~vk1C & F Up::MouseClick,left,,,,,U
- vk1D & F::
+ vk1D & G::
   MouseClick,left,,,,,D
   While(GetKeyState("F","P"))
   {
-    BlockInput, Send
   }
 Return
-vk1D & F Up::MouseClick,left,,,,,U
+vk1D & G Up::MouseClick,left,,,,,U
 
 ;英数変換 + D = Space + 左クリック
 vk1D & D::
