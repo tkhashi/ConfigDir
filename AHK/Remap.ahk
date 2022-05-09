@@ -2,6 +2,51 @@
 #IfWinNotActive my task-management tool
 #If
 
+;///////////////////////////////IMEオフ///////////////////////////////////
+; 以下サイトから拝借
+; http://www6.atwiki.jp/eamat/pages/17.html
+;------------------------------------------------------------------------------------
+;Esc時に英字入力にする
+;------------------------------------------------------------------------------------
+IME_SET(SetSts, WinTitle="A")    {
+    ControlGet,hwnd,HWND,,,%WinTitle%
+    if  (WinActive(WinTitle))   {
+        ptrSize := !A_PtrSize ? 4 : A_PtrSize
+        VarSetCapacity(stGTI, cbSize:=4+4+(PtrSize*6)+16, 0)
+        NumPut(cbSize, stGTI,  0, "UInt")  ;   DWORD   cbSize;
+        hwnd := DllCall("GetGUIThreadInfo", Uint,0, Uint,&stGTI)
+                 ? NumGet(stGTI,8+PtrSize,"UInt") : hwnd
+    }
+    return DllCall("SendMessage"
+          , UInt, DllCall("imm32\ImmGetDefaultIMEWnd", Uint,hwnd)
+          , UInt, 0x0283 ;Message : WM_IME_CONTROL
+          ,  Int, 0x006  ;wParam  : IMC_SETOPENSTATUS
+          ,  Int, SetSts) ;lParam  : 0 or 1
+}
+
+;~Esc::IME_SET(0)
+;~^[::IME_SET(0)
+;~^'::IME_SET(0)
+;~^@::IME_SET(0)
+
+;------------------------------------------------------------------------------------
+;Windowが切り替わるとIMEオフになる
+;------------------------------------------------------------------------------------
+;Ghoster.ahkを切った時用
+;START:
+;WinGet,oldid,ID,A
+;WinGet,oldtop,ExStyle,ahk_id %oldid%
+
+;LOOP:
+;Sleep,50
+;WinGet,winid,ID,A
+;If winid<>%oldid%
+;{
+  ;IME_SET(0)
+  ;oldid=%winid%
+;}
+;Goto,LOOP
+
 ;///////////////////////////////エディターリマップ///////////////////////////////////
 #HotkeyInterval 100
 ; 主要なキーをホットキーとして検知可能にしておく
@@ -120,10 +165,10 @@ $Ctrl::
     }
     Return
 
-
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 F13::Send, {vk1D} ;無変換＝英数切り替え
 ;Ctrl + jknp => 矢印キー
+
 <^H::Send, {BS}
 <^J::Send, {left}
 <^K::Send, {right}
@@ -205,50 +250,7 @@ F13::Send, {vk1D} ;無変換＝英数切り替え
 	Sleep, 50
 	Send, y
 
-;///////////////////////////////IMEオフ///////////////////////////////////
-; 以下サイトから拝借
-; http://www6.atwiki.jp/eamat/pages/17.html
-;------------------------------------------------------------------------------------
-;Esc時に英字入力にする
-;------------------------------------------------------------------------------------
-IME_SET(SetSts, WinTitle="A")    {
-    ControlGet,hwnd,HWND,,,%WinTitle%
-    if  (WinActive(WinTitle))   {
-        ptrSize := !A_PtrSize ? 4 : A_PtrSize
-        VarSetCapacity(stGTI, cbSize:=4+4+(PtrSize*6)+16, 0)
-        NumPut(cbSize, stGTI,  0, "UInt")  ;   DWORD   cbSize;
-        hwnd := DllCall("GetGUIThreadInfo", Uint,0, Uint,&stGTI)
-                 ? NumGet(stGTI,8+PtrSize,"UInt") : hwnd
-    }
-    return DllCall("SendMessage"
-          , UInt, DllCall("imm32\ImmGetDefaultIMEWnd", Uint,hwnd)
-          , UInt, 0x0283 ;Message : WM_IME_CONTROL
-          ,  Int, 0x006  ;wParam  : IMC_SETOPENSTATUS
-          ,  Int, SetSts) ;lParam  : 0 or 1
-}
 
-~Esc::IME_SET(0)
-~^[::IME_SET(0)
-~^'::IME_SET(0)
-~^@::IME_SET(0)
-
-;------------------------------------------------------------------------------------
-;Windowが切り替わるとIMEオフになる
-;------------------------------------------------------------------------------------
-;Ghoster.ahkを切った時用
-;START:
-;WinGet,oldid,ID,A
-;WinGet,oldtop,ExStyle,ahk_id %oldid%
-
-;LOOP:
-;Sleep,50
-;WinGet,winid,ID,A
-;If winid<>%oldid%
-;{
-  ;IME_SET(0)
-  ;oldid=%winid%
-;}
-;Goto,LOOP
 
 ;///////////////////////////////マウス操作///////////////////////////////////
 ;------------------------------------------------------------------------------
