@@ -1,6 +1,6 @@
 ﻿;///////////////////////////////特定のアプリで無効化///////////////////////////////////
 #IfWinNotActive my task-management tool
-#If
+#IfWinNotActive
 
 ;///////////////////////////////IMEオフ///////////////////////////////////
 ; 以下サイトから拝借
@@ -166,7 +166,8 @@ $Ctrl::
     Return
 
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
-F13::Send, {vk1D} ;無変換＝英数切り替え
+*~LAlt up::Send, {Blind}{vk1D} ;左Alt＝英数切り替え
+*~RAlt up::Send, {Blind}{vk1D} ;右Alt＝英数切り替え
 ;Ctrl + jknp => 矢印キー
 
 <^H::Send, {BS}
@@ -229,12 +230,11 @@ F13::Send, {vk1D} ;無変換＝英数切り替え
 
 ;///////////////////////////////アプリ起動///////////////////////////////////
 #HotkeyInterval 100
-
+#IfWinNotActive C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe
+#If
 >^I::Send, #1
 >^0::Send, #2
-#IfWinNotActive スマカン
 >^J::Send, #3
-#If
 ^!S::Send, #4
 ^!L::Send, #5
 ^!E::Send, #6
