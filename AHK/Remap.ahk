@@ -133,7 +133,7 @@ IME_SET(SetSts, WinTitle="A")    {
 *~>::
 *~/::
 *~?::
-*~Esc::
+;*~Esc::
 *~Tab::
 *~Space::
 *~LAlt::
@@ -166,8 +166,8 @@ $Ctrl::
     Return
 
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
-*~LAlt up::Send, {Blind}{vk1D} ;左Alt＝英数切り替え
-*~RAlt up::Send, {Blind}{vk1D} ;右Alt＝英数切り替え
+*~LAlt up::Send, {LAlt up}{vk1D} ;左Alt＝英数切り替え
+*~RAlt up::Send, {RAlt up}{vk1D} ;右Alt＝英数切り替え
 ;Ctrl + jknp => 矢印キー
 
 <^H::Send, {BS}
@@ -182,7 +182,7 @@ Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 +<^P::Send, +{up}
 ;Ctrl + Ctrl + jknp => Ctrl + 矢印キー
 >^<^J::Send, ^{left}
->^<^K::Send, ^{right}
+>^<^K::Send, bb^{right}
 >^<^N::Send, ^{down}
 >^<^P::Send, ^{up}
 ;Ctrl + Ctrl + Shift + jknp => Ctrl + Shift + 矢印キー
@@ -206,11 +206,10 @@ Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 !>^<^N::Send, ^!{down}
 !>^<^P::Send, ^!{up}
 
-<^]::Send,{Esc}
-<^[::Send,{Esc}
-+<^[::Send,+{Esc}
-+<^]::Send,+{Esc}
-
+<^]::Send,{Esc}{vk1D}
+<^[::Send,{Esc}{vk1D}
++<^[::Send,+{Esc}{vk1D}
++<^]::Send,+{Esc}{vk1D}
 
 >^Q::Send, !{F4}
 ^4::Send, ^{F4}
@@ -218,8 +217,8 @@ Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 >^]::Send, {Browser_Forward}
 
 ;JISキーボード用
-<^@::Send,{Esc}
-+<^@::Send,+{Esc}
+<^@::Send,{Esc}{vk1D}
++<^@::Send,+{Esc}{vk1D}
 <^vk1C::Send, {AppsKey}
 
 ;ウィンドウサイズ変更
@@ -249,8 +248,6 @@ Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 	Run, "C:\Users\Kazuhiro Takahashi\work\ConfigDir\AHK\Remap.ahk"
 	Sleep, 50
 	Send, y
-
-
 
 ;///////////////////////////////マウス操作///////////////////////////////////
 ;------------------------------------------------------------------------------
