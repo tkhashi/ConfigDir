@@ -166,8 +166,8 @@ $Ctrl::
     Return
 
 Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
-*~LAlt up::Send, {LAlt up}{vk1D} ;左Alt＝英数切り替え
-*~RAlt up::Send, {RAlt up}{vk1D} ;右Alt＝英数切り替え
+F13::Send, {vk1D} ;F13＝英数切り替え
+
 ;Ctrl + jknp => 矢印キー
 
 <^H::Send, {BS}
@@ -182,7 +182,7 @@ Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 +<^P::Send, +{up}
 ;Ctrl + Ctrl + jknp => Ctrl + 矢印キー
 >^<^J::Send, ^{left}
->^<^K::Send, bb^{right}
+>^<^K::Send, ^{right}
 >^<^N::Send, ^{down}
 >^<^P::Send, ^{up}
 ;Ctrl + Ctrl + Shift + jknp => Ctrl + Shift + 矢印キー
@@ -227,19 +227,40 @@ Pause::Send, {vkF2} ;ひらがな/カタカナ切り替え
 #<^j::Send, #{left}
 #<^k::Send, #{right}
 
+; デュアルディスプレイ間マウス移動
+; 0 == プライマルディスプレイ
+; 1 == サブディスプレイ
+; [サブ｜メイン]の配置を想定
+a := 0
+;Win+tab
+#Tab::
+	if(a == 0){
+		CoordMode,Mouse,Screen
+		MouseGetPos,x,y
+		MouseMove,x - A_ScreenWidth,y
+	        a := 1
+	}
+	Else{
+		CoordMode,Mouse,Screen
+		MouseGetPos,x,y
+		MouseMove,x + A_ScreenWidth,y
+		a := 0
+	}
+return
+
+
 ;///////////////////////////////アプリ起動///////////////////////////////////
 #HotkeyInterval 100
 #IfWinNotActive C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe
 #If
->^I::Send, #1
->^0::Send, #2
->^J::Send, #3
-^!S::Send, #4
-^!L::Send, #5
-^!E::Send, #6
-^!T::Send, #7
-^!Z::Send, #8
-^!O::Send, #9
+>^I::Send, #1 ; Vivaldi
+>^0::Send, #2 ; Visual Studio
+>^J::Send, #3 ; Terminal
+^!S::Send, #4 ; Slack
+^!L::Send, #5 ; VS Code
+^!E::Send, #6 ; Explorer
+^!F::Send, #7 ; Fork
+
 ;AHK全部リロード
 ^!R::
 	Run, "C:\Users\Kazuhiro Takahashi\AppData\Local\Wox\Wox.exe"
